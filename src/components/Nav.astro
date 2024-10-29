@@ -1,0 +1,22 @@
+---
+const NavItems = [
+    {href: '/', text: 'home'},
+    {href: '/about', text: 'about'},
+    {href: '/blog', text: 'blog'},
+]
+
+const {items} = Astro.props;
+
+import Link from './Link.astro';
+---
+
+
+<header>
+    <span class="navbar">
+      {items ? items.map((item) => (
+                      <Link href={item.href} text={item.text}/>)) :
+          NavItems.map((item) => (
+                  <Link href={item.href} text={item.text}/>))
+      }
+    </span>
+</header>

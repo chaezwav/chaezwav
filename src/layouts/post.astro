@@ -1,0 +1,19 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+const {frontmatter} = Astro.props;
+---
+
+<BaseHead title={frontmatter.title}/>
+<Nav />
+<article>
+    <h1 class="ptitle">{frontmatter.title}</h1>
+    <slot/>
+
+    <div class="formatter">
+        <p>&infin; {new Date(frontmatter.pubDate).toISOString().slice(0, 10)}</p>
+        <p>&sim; Koehn Humphries</p>
+    </div>
+</article>
+<Footer/>

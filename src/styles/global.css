@@ -159,6 +159,11 @@ footer {
   display: block;
 }
 
+.dropdown-content a:hover {
+  background-color: var(--primary-color) !important;
+  text-decoration: none;
+}
+
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;

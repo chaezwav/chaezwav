@@ -1,17 +1,22 @@
 ---
-import Navigation from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import BaseHead from '../components/BaseHead.astro';
+import Navigation from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import BaseHead from "../components/BaseHead.astro";
+import ThemeRetrieval from "../components/ThemeRetrieval.astro";
 const { title } = Astro.props;
 ---
+
 <html lang="en">
-<BaseHead title={title} />
-<body>
-<Navigation />
-<h1>{title}</h1>
-<article>
-    <slot /> <!-- your content is injected here -->
-</article>
-<Footer />
-</body>
+  <BaseHead title={title} />
+  <body>
+    <Navigation />
+    <h1>{title}</h1>
+    <article>
+      <slot />
+      <!-- your content is injected here -->
+    </article>
+    <Footer />
+  </body>
 </html>
+
+<ThemeRetrieval />

@@ -1,21 +1,41 @@
 ---
-import Site from '../layouts/default.astro';
-import BlogPost from '../components/BlogPost.astro';
-const postGlob = await Astro.glob('./posts/*.md')
+import Site from "../layouts/default.astro";
+import BlogPost from "../components/BlogPost.astro";
+const postGlob = await Astro.glob("./posts/*.md");
 
-const allPosts = postGlob.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+const allPosts = postGlob.sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
+);
 
 const featuredPost = allPosts[0];
 ---
 
 <Site title="Koehn's Notes">
-    <h3>ABOUT</h3>
-    <p>
-        Welcome to my blog! This is a place where I will share whatever I want, and when I want! I hope you enjoy!
-    </p>
-    <h3>LATEST POST</h3>
-    <BlogPost url={featuredPost.url} title={featuredPost.frontmatter.title} date={new Date(featuredPost.frontmatter.pubDate).toISOString().slice(0, 10)} latest="latest" />
-    <h3>ALL POSTS - ({allPosts.slice(1).length})</h3>
-    {allPosts.slice(1).map((post) => <BlogPost url={post.url} title={post.frontmatter.title} date={new Date(post.frontmatter.pubDate).toISOString().slice(0, 10)} />)}
-    <p>{allPosts.slice(1).length < 5 ? "- That's all the posts for now!" : ''}</p>
+  <h3>ABOUT</h3>
+  <p>
+    Welcome to my blog! This is a place where I will share whatever I want, and
+    when I want! I hope you enjoy!
+  </p>
+  <h3>LATEST POST</h3>
+  <BlogPost
+    url={featuredPost.url}
+    title={featuredPost.frontmatter.title}
+    date={new Date(featuredPost.frontmatter.pubDate).toISOString().slice(0, 10)}
+    latest="latest"
+  />
+  <h3>ALL POSTS - ({allPosts.slice(1).length})</h3>
+  {
+    allPosts
+      .slice(1)
+      .map((post) => (
+        <BlogPost
+          url={post.url}
+          title={post.frontmatter.title}
+          date={new Date(post.frontmatter.pubDate).toISOString().slice(0, 10)}
+        />
+      ))
+  }
+  <p>{allPosts.slice(1).length < 5 ? "- That's all the posts for now!" : ""}</p>
 </Site>

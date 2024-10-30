@@ -1,0 +1,52 @@
+---
+import themes from "../styles/themes.json";
+---
+
+<div class="dropdown" style="float:right;">
+  <button class="dropbtn"><strong>/</strong>theme</button>
+  <div class="dropdown-content">
+    {
+      themes.map((theme) => (
+        <a
+          href="#"
+          style={{ "background-color": theme.colors.primary }}
+          class="theme"
+          id={theme.name}
+        >
+          {theme.name}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script define:vars={{ themes }}>
+  const links = document.querySelectorAll(".theme");
+
+  for (const link of links) {
+    const theme = themes.find((theme) => theme.name === link.id);
+
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      window.localStorage.setItem("theme", theme.name);
+
+      document.documentElement.style.setProperty(
+        "--primary-color",
+        theme.colors.primary
+      );
+      document.documentElement.style.setProperty(
+        "--secondary-color",
+        theme.colors.secondary
+      );
+      document.documentElement.style.setProperty(
+        "--background-color",
+        theme.colors.background
+      );
+      document.documentElement.style.setProperty(
+        "--tertiary-color",
+        theme.colors.tertiary
+      );
+    });
+  }
+</script>

@@ -1,0 +1,27 @@
+---
+import themes from "../styles/themes.json";
+---
+
+<script define:vars={{ themes }}>
+  const data = window.localStorage.getItem("theme");
+  console.log(data);
+
+  const theme = themes.find((theme) => theme.name === data);
+
+  document.documentElement.style.setProperty(
+    "--primary-color",
+    theme.colors.primary
+  );
+  document.documentElement.style.setProperty(
+    "--secondary-color",
+    theme.colors.secondary
+  );
+  document.documentElement.style.setProperty(
+    "--background-color",
+    theme.colors.background
+  );
+  document.documentElement.style.setProperty(
+    "--tertiary-color",
+    theme.colors.tertiary
+  );
+</script>

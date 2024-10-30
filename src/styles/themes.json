@@ -1,0 +1,20 @@
+[
+    {
+        "name": "halloween",
+        "colors": {
+            "primary": "#FF8132",
+            "secondary": "#f1f1f1",
+            "tertiary": "#783484",
+            "background": "#202124"
+        }
+    },
+    {
+        "name": "default",
+        "colors": {
+            "primary": "#f7cacd",
+            "secondary": "#f1f1f1",
+            "tertiary": "#535357",
+            "background": "#202124"
+        }
+    }
+]

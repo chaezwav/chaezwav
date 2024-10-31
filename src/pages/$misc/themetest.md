@@ -2,7 +2,7 @@
 layout: ../../layouts/default.astro
 ---
 
-# Demo title
+# Demo Title
 
 Demo text
 

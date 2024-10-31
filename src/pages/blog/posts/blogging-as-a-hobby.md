@@ -1,8 +1,10 @@
 ---
-layout: ../../layouts/post.astro
-title: 'Blogging as a Hobby'
+layout: ../../../layouts/post.astro
+title: "Blogging as a Hobby"
 pubDate: 2024-10-25
+tags: ["interests", "test", "hello"]
 ---
+
 I think everyone can understand what I mean when I say hobbies are important. Whether, it’s playing a sport, playing video games, or even something as out there as [insect fighting](https://en.wikipedia.org/wiki/Insect_fighting), we all have one and it helps us fulfill our very limiting 24 hours a day. I mean, who can even figure out what to do in all that time?
 
 Being given these options is both a blessing and a curse for an indecisive teenage mind. With hundreds of thousands of possibilities it really takes time and dedication to find YOUR hobby. I mean some people luckily found that early on in their life and still continue with it through their adult journey, but I, on the other hand, still don’t have a hobby I can call mine!

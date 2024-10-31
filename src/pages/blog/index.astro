@@ -1,6 +1,7 @@
 ---
-import Site from "../layouts/default.astro";
-import BlogPost from "../components/BlogPost.astro";
+import Default from "../../layouts/default.astro";
+import BlogPost from "../../components/BlogPost.astro";
+import Tag from "../../components/Tag.astro";
 const postGlob = await Astro.glob("./posts/*.md");
 
 const allPosts = postGlob.sort(
@@ -10,9 +11,13 @@ const allPosts = postGlob.sort(
 );
 
 const featuredPost = allPosts[0];
+
+const uniqueTags = [
+  ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+];
 ---
 
-<Site title="Koehn's Notes">
+<Default title="Koehn's Notes">
   <h3>ABOUT</h3>
   <p>
     Welcome to my blog! This is a place where I will share whatever I want, and
@@ -25,6 +30,8 @@ const featuredPost = allPosts[0];
     date={new Date(featuredPost.frontmatter.pubDate).toISOString().slice(0, 10)}
     latest="latest"
   />
+  <h3>TAGS - ({uniqueTags.length})</h3>
+  {uniqueTags.map((tag) => <Tag tag={tag} />)}
   <h3>ALL POSTS - ({allPosts.slice(1).length})</h3>
   {
     allPosts
@@ -38,4 +45,4 @@ const featuredPost = allPosts[0];
       ))
   }
   <p>{allPosts.slice(1).length < 5 ? "- That's all the posts for now!" : ""}</p>
-</Site>
+</Default>

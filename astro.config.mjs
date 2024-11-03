@@ -5,4 +5,5 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
+  server: { port: 65465 },
 });

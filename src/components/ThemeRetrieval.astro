@@ -3,15 +3,19 @@ import themes from "../styles/themes.json";
 ---
 
 <script define:vars={{ themes }}>
-  const data = window.localStorage.getItem("theme");
-
-  if (!data) {
-    window.localStorage.setItem("theme", "default");
+  function findThemeDefinition(item) {
+    return themes.find((t) => t.name === item);
   }
 
-  console.log(data);
+  const item = window.localStorage.getItem("theme");
+  const themeDefinition = findThemeDefinition(item);
 
-  const theme = themes.find((theme) => theme.name === data);
+  if (item && !themeDefinition) {
+    window.localStorage.setItem("theme", "default");
+    console.log("Theme not found, setting to default");
+  }
+
+  const theme = themeDefinition || findThemeDefinition("default");
 
   document.documentElement.style.setProperty(
     "--primary-color",

@@ -1,12 +1,6 @@
 ---
-import type { GetStaticPaths } from "astro";
 import Default from "../../../layouts/default.astro";
 import BlogPost from "../../../components/BlogPost.astro";
-import formatAsTitle from "../../../lib/formatAsTitle";
-
-// const filteredPosts = postGlob.filter((post) =>
-//   post.frontmatter.tags.includes(tag)
-// );
 
 export async function getStaticPaths() {
   const postGlob = await Astro.glob("../posts/*.md");
@@ -39,7 +33,7 @@ const { filteredPosts } = Astro.props;
     filteredPosts.map((post) => (
       <BlogPost
         url={post.url}
-        title={formatAsTitle(post.url)}
+        title={post.frontmatter.title}
         date={new Date(post.frontmatter.pubDate).toISOString().slice(0, 10)}
       />
     ))

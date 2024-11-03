@@ -1,6 +1,6 @@
 ---
 layout: ../../../layouts/post.astro
-title: ""
+title: "Music for Consumerism"
 pubDate: 2024-11-03
 tags: ["music", "rants"]
 ---

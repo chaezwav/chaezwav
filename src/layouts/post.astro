@@ -4,19 +4,14 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import ThemeRetrieval from "../components/ThemeRetrieval.astro";
 import Tag from "../components/Tag.astro";
-import formatAsTitle from "../lib/formatAsTitle";
 
 const { frontmatter } = Astro.props;
-
-console.log(formatAsTitle(Astro.url.pathname));
-
-const title = formatAsTitle(Astro.url.pathname);
 ---
 
-<BaseHead title={title} />
+<BaseHead title={frontmatter.title} />
 <Nav />
 <article>
-  <h1 class="ptitle">{title}</h1>
+  <h1 class="ptitle">{frontmatter.title}</h1>
   <slot />
 
   <div class="formatter">

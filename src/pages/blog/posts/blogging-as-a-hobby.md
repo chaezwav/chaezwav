@@ -1,6 +1,6 @@
 ---
 layout: ../../../layouts/post.astro
-title: ""
+title: "Blogging as a Hobby"
 pubDate: 2024-10-25
 tags: ["interests", "intro"]
 ---

@@ -1,12 +1,5 @@
 @import url("./fonts.css");
 
-:root {
-  --primary-color: #f7cacd;
-  --secondary-color: #f1f1f1;
-  --tertiary-color: #535357;
-  --background-color: #202124;
-}
-
 html,
 button {
   font-size: 16px;

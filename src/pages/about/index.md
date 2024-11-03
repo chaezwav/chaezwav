@@ -2,6 +2,7 @@
 layout: ../../layouts/md-page.astro
 title: About Me
 ---
+
 ## PROFESSIONAL
 
 Primarily, I am a student at my High School, but outside of that I am a crew member at Dunkin'.
@@ -24,5 +25,4 @@ If you take a look at my page, you'll see I tend to listen to a lot of Korean Po
 
 I also like to dabble in Photography here and there. I've been experimenting for about a year now, and while I may not be that good, I still thoroughly enjoy it!
 
-*Make sure to check out the [colophon](/about/colophon) for more information on the technologies used to build this site!*
-```
+_Make sure to check out the [colophon](/about/colophon) for more information on the technologies used to build this site!_

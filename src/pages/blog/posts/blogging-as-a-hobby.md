@@ -1,8 +1,8 @@
 ---
 layout: ../../../layouts/post.astro
-title: "Blogging as a Hobby"
+title: ""
 pubDate: 2024-10-25
-tags: ["interests", "test", "hello"]
+tags: ["interests", "intro"]
 ---
 
 I think everyone can understand what I mean when I say hobbies are important. Whether, it’s playing a sport, playing video games, or even something as out there as [insect fighting](https://en.wikipedia.org/wiki/Insect_fighting), we all have one and it helps us fulfill our very limiting 24 hours a day. I mean, who can even figure out what to do in all that time?

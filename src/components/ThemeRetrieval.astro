@@ -4,6 +4,11 @@ import themes from "../styles/themes.json";
 
 <script define:vars={{ themes }}>
   const data = window.localStorage.getItem("theme");
+
+  if (!data) {
+    window.localStorage.setItem("theme", "default");
+  }
+
   console.log(data);
 
   const theme = themes.find((theme) => theme.name === data);

@@ -1,11 +1,32 @@
 [
     {
         "name": "default",
-        "colors": {
+        "light": {
+            "primary": "#d39fa3",
+            "secondary": "#202124",
+            "tertiary": "#535357",
+            "background": "#fff1e6"
+        },
+        "dark": {
             "primary": "#f7cacd",
             "secondary": "#fff1e6",
             "tertiary": "#535357",
             "background": "#202124"
+        }
+    },
+    {
+        "name": "pink",
+        "light": {
+            "primary": "#ffa0ac",
+            "secondary": "#ffa0ac",
+            "tertiary": "#ffa0ac",
+            "background": "#ffe5e8"
+        },
+        "dark": {
+            "primary": "#fbced4",
+            "secondary": "#fbced4",
+            "tertiary": "#fbced4",
+            "background": "#ffa0ac"
         }
     }
 ]

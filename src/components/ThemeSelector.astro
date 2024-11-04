@@ -7,46 +7,68 @@ import themes from "../styles/themes.json";
   <div class="dropdown-content">
     {
       themes.map((theme) => (
-        <a
-          href="#"
-          style={{ "background-color": theme.colors.primary }}
-          class="theme"
-          id={theme.name}
-        >
+        <a href="#" class="theme" id={theme.name}>
           {theme.name}
         </a>
       ))
     }
+    <hr />
+    <a href="#" id="dark" class="bright">dark</a>
+    <a href="#" id="light" class="bright">light</a>
   </div>
 </div>
 
 <script define:vars={{ themes }}>
   const links = document.querySelectorAll(".theme");
+  const brightness = document.querySelectorAll(".bright");
+
+  function switchTheme(theme) {
+    const themeValue =
+      window.localStorage.getItem("brightness") === "dark"
+        ? theme.dark
+        : theme.light;
+
+    document.documentElement.style.setProperty(
+      "--primary-color",
+      themeValue.primary
+    );
+    document.documentElement.style.setProperty(
+      "--secondary-color",
+      themeValue.secondary
+    );
+    document.documentElement.style.setProperty(
+      "--background-color",
+      themeValue.background
+    );
+    document.documentElement.style.setProperty(
+      "--tertiary-color",
+      themeValue.tertiary
+    );
+  }
+
+  // todo: implement brightness based on system preference
+  // window.matchMedia('(prefers-color-scheme: dark)').matches
+
+  for (const b of brightness) {
+    b.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.localStorage.setItem("brightness", b.id);
+      switchTheme(
+        themes.find(
+          (theme) => theme.name === window.localStorage.getItem("theme")
+        )
+      );
+    });
+  }
 
   for (const link of links) {
-    const theme = themes.find((theme) => theme.name === link.id);
+    const themeValue = themes.find((theme) => theme.name === link.id);
 
     link.addEventListener("click", (event) => {
       event.preventDefault();
 
-      window.localStorage.setItem("theme", theme.name);
-
-      document.documentElement.style.setProperty(
-        "--primary-color",
-        theme.colors.primary
-      );
-      document.documentElement.style.setProperty(
-        "--secondary-color",
-        theme.colors.secondary
-      );
-      document.documentElement.style.setProperty(
-        "--background-color",
-        theme.colors.background
-      );
-      document.documentElement.style.setProperty(
-        "--tertiary-color",
-        theme.colors.tertiary
-      );
+      window.localStorage.setItem("theme", themeValue.name);
+      switchTheme(themeValue);
     });
   }
 </script>

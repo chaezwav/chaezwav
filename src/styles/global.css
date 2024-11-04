@@ -158,8 +158,8 @@ footer {
 }
 
 .dropdown-content a:hover {
-  background-color: var(--primary-color) !important;
-  text-decoration: none;
+  /*background-color: var(--primary-color) !important;*/
+  text-decoration: underline;
 }
 
 /* Show the dropdown menu on hover */
@@ -173,4 +173,11 @@ footer {
     color: var(--background-color);
   }
   color: var(--background-color) !important;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--background-color);
+  margin: 0;
 }

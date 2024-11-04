@@ -11,7 +11,7 @@ According to the [IndieWeb](https://indieweb.org/colophon), a colophon is define
 
 ### TOOLS AND TECH USED
 
-The code for this website is hosted on [Github](https://github.com/chaezwav/website). This site was written using [Astro](https://astro.build), a Javascript framework for content-based websites, and in [JetBrains WebStorm](https://www.jetbrains.com/webstorm/). This website is hosted currently on [Render](https://render.com), but I eventually plan to move off of the platform onto my own server.
+The code for this website is hosted on [Github](https://github.com/chaezwav/website). This site was written using [Astro](https://astro.build), a Javascript framework for content-based websites, and in [Visual Studio Code](https://code.visualstudio.com/). This website is hosted currently on [Render](https://render.com), but I eventually plan to move off of the platform onto my own server.
 
 ### FONTS
 

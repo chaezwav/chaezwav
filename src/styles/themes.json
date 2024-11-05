@@ -26,7 +26,22 @@
             "primary": "#fbced4",
             "secondary": "#fbced4",
             "tertiary": "#fbced4",
-            "background": "#ffa0ac"
+            "background": "#cf707c"
+        }
+    },
+    {
+        "name": "winter",
+        "light": {
+            "primary": "#a8dadc",
+            "secondary": "#457b9d",
+            "tertiary": "#1d3557",
+            "background": "#f1faee"
+        },
+        "dark": {
+            "primary": "#f1faee",
+            "secondary": "#a8dadc",
+            "tertiary": "#457b9d",
+            "background": "#1d3557"
         }
     }
 ]

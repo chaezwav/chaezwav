@@ -33,15 +33,15 @@
         "name": "winter",
         "light": {
             "primary": "#a8dadc",
-            "secondary": "#457b9d",
+            "secondary": "#253237",
             "tertiary": "#1d3557",
-            "background": "#f1faee"
+            "background": "#E0FBFC"
         },
         "dark": {
-            "primary": "#f1faee",
-            "secondary": "#a8dadc",
+            "primary": "#a8dadc",
+            "secondary": "#E0FBFC",
             "tertiary": "#457b9d",
-            "background": "#1d3557"
+            "background": "#253237"
         }
     }
 ]

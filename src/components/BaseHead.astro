@@ -1,27 +1,32 @@
 ---
 const { title } = Astro.props;
-let theme;
 import "../styles/global.css";
+import themes from "../styles/themes.json";
 ---
 
-<script>
-  function getTheme() {
-    return document.documentElement.style.getPropertyValue(
-      "--background-color"
-    );
+<script define:vars={{ themes }}>
+  function findThemeDefinition() {
+    let localTheme = localStorage.getItem("theme");
+
+    if (localTheme && !themes.find((t) => t.name === localTheme)) {
+      localStorage.setItem("theme", "default");
+      localTheme = "default";
+      console.log("init: style: theme not found, set to default");
+    }
+
+    return themes.find((t) => t.name === localTheme);
   }
 
-  try {
-    const metaTheme = document.createElement("meta");
+  const themeDefinition = findThemeDefinition();
 
-    metaTheme.setAttribute("name", "theme-color");
+  console.log("init: style: theme set to:", themeDefinition.name);
 
-    metaTheme.setAttribute("content", getTheme());
+  const metaElement = document.createElement("meta");
 
-    document.head.appendChild(metaTheme);
-  } catch (e) {
-    console.error(e);
-  }
+  metaElement.name = "theme-color";
+  metaElement.content = themeDefinition.background;
+
+  document.head.appendChild(metaElement);
 </script>
 
 <head>
@@ -30,7 +35,6 @@ import "../styles/global.css";
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
-  <link rel="me" href="https://social.lol/@koehn" />
   <meta name="fediverse:creator" content="@koehn@social.lol" />
   <meta name="og:title" content="Koehn's Website" />
   <meta

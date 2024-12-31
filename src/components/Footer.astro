@@ -1,11 +1,12 @@
 ---
-
+import ThemeSelector from "./ThemeSelector.astro";
+import { version } from "../../package.json";
 ---
 
 <footer>
-  Made by
-  <span>
+  <ThemeSelector />
+  <div>
     <strong>Koehn</strong>
-    © 2024
-  </span>
+    © 2024 <a href="/version">v{version}</a>
+  </div>
 </footer>

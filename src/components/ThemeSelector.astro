@@ -2,43 +2,23 @@
 import themes from "../styles/themes.json";
 ---
 
-<div class="dropdown" style="float:right;">
-  <button class="dropbtn"><strong>/</strong>theme</button>
-  <div class="dropdown-content">
-    {
-      themes.map((theme) => (
-        <a href="#" class="theme" id={theme.name}>
-          {theme.name}
-        </a>
-      ))
-    }
-    <hr />
-    <a href="#" id="dark" class="bright">dark</a>
-    <a href="#" id="light" class="bright">light</a>
-    <a href="#" id="auto" class="bright">auto</a>
-  </div>
+<div class="themes">
+  {
+    themes.map((theme) => (
+      <a href="#" class="theme" id={theme.name}>
+        {theme.name}
+      </a>
+    ))
+  }
 </div>
 
 <script define:vars={{ themes }}>
   const links = document.querySelectorAll(".theme");
-  const brightness = document.querySelectorAll(".bright");
 
   function switchTheme(theme) {
-    let themeValue;
-
-    switch (window.localStorage.getItem("brightness")) {
-      case "dark":
-        themeValue = theme.dark;
-        break;
-      case "light":
-        themeValue = theme.light;
-        break;
-      case "auto":
-        themeValue = window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? theme.dark
-          : theme.light;
-        break;
-    }
+    const themeValue = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? theme.dark
+      : theme.light;
 
     document.documentElement.style.setProperty(
       "--primary-color",
@@ -60,19 +40,8 @@ import themes from "../styles/themes.json";
     document
       .querySelector("meta[name=theme-color]")
       .setAttribute("content", themeValue.background);
-  }
 
-  for (const b of brightness) {
-    b.addEventListener("click", (event) => {
-      event.preventDefault();
-      window.localStorage.setItem("brightness", b.id);
-
-      switchTheme(
-        themes.find(
-          (theme) => theme.name === window.localStorage.getItem("theme")
-        )
-      );
-    });
+    console.log("style: theme switched to: ", theme.name);
   }
 
   for (const link of links) {

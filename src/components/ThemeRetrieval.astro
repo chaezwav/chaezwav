@@ -12,35 +12,20 @@ import themes from "../styles/themes.json";
 
   if (item && !themeDefinition) {
     window.localStorage.setItem("theme", "default");
-    console.log("Theme not found, setting to default");
+    console.log("issue: style: theme not found, set to default");
   }
 
   const themeValue = themeDefinition || findThemeDefinition("default");
-  let theme;
+  let theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? themeValue.dark
+    : themeValue.light;
 
-  switch (window.localStorage.getItem("brightness")) {
-    case "dark":
-      theme = themeValue.dark;
-      break;
-    case "light":
-      theme = themeValue.light;
-      break;
-    case "auto":
-      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? themeValue.dark
-        : themeValue.light;
-
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", (e) => {
-          theme = e.matches ? themeValue.dark : themeValue.light;
-          switchTheme(theme);
-        });
-
-      break;
-  }
-
-  switchTheme(theme);
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      theme = e.matches ? themeValue.dark : themeValue.light;
+      switchTheme(theme);
+    });
 
   function switchTheme(theme) {
     document.documentElement.style.setProperty(
@@ -59,5 +44,11 @@ import themes from "../styles/themes.json";
       "--tertiary-color",
       theme.tertiary
     );
+
+    document
+      .querySelector("meta[name=theme-color]")
+      .setAttribute("content", theme.background);
   }
+
+  switchTheme(theme);
 </script>

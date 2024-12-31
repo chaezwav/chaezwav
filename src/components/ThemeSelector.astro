@@ -44,6 +44,10 @@ import themes from "../styles/themes.json";
       "--tertiary-color",
       themeValue.tertiary
     );
+
+    document
+      .querySelector("meta[name=theme-color]")
+      .setAttribute("content", themeValue.background);
   }
 
   // todo: implement brightness based on system preference

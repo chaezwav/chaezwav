@@ -2,7 +2,8 @@
 import Default from "../../layouts/default.astro";
 import BlogPost from "../../components/BlogPost.astro";
 import Tag from "../../components/Tag.astro";
-const postGlob = await Astro.glob("./posts/*.md");
+const matches = import.meta.glob("./posts/*.md", { eager: true });
+const postGlob = Object.values(matches);
 
 const allPosts = postGlob.sort(
   (a, b) =>
@@ -31,7 +32,9 @@ const uniqueTags = [
     latest="latest"
   />
   <h3>TAGS - ({uniqueTags.length})</h3>
-  {uniqueTags.map((tag) => <Tag tag={tag} />)}
+  <span style="display: flex; flex-wrap: wrap;"
+    >{uniqueTags.map((tag) => <Tag tag={tag} />)}</span
+  >
   <h3>ALL POSTS - ({allPosts.slice(1).length})</h3>
   {
     allPosts

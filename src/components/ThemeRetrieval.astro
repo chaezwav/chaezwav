@@ -23,7 +23,11 @@ import themes from "../styles/themes.json";
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", (e) => {
-      theme = e.matches ? themeValue.dark : themeValue.light;
+      const newTheme = findThemeDefinition(
+        window.localStorage.getItem("theme")
+      );
+
+      theme = e.matches ? newTheme.dark : newTheme.light;
       switchTheme(theme);
     });
 

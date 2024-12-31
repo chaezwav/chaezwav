@@ -15,6 +15,10 @@ import themes from "../styles/themes.json";
 <script define:vars={{ themes }}>
   const links = document.querySelectorAll(".theme");
 
+  function findThemeDefinition(item) {
+    return themes.find((t) => t.name === item);
+  }
+
   function switchTheme(theme) {
     const themeValue = window.matchMedia("(prefers-color-scheme: dark)").matches
       ? theme.dark
@@ -47,11 +51,15 @@ import themes from "../styles/themes.json";
   for (const link of links) {
     const themeValue = themes.find((theme) => theme.name === link.id);
 
+    console.log(themeValue);
+
     link.addEventListener("click", (event) => {
       event.preventDefault();
-
       window.localStorage.setItem("theme", themeValue.name);
-      switchTheme(themeValue);
+
+      const theme = findThemeDefinition(themeValue.name);
+
+      switchTheme(theme);
     });
   }
 </script>

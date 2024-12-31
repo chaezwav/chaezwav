@@ -15,6 +15,7 @@ import themes from "../styles/themes.json";
     <hr />
     <a href="#" id="dark" class="bright">dark</a>
     <a href="#" id="light" class="bright">light</a>
+    <a href="#" id="auto" class="bright">auto</a>
   </div>
 </div>
 
@@ -23,10 +24,21 @@ import themes from "../styles/themes.json";
   const brightness = document.querySelectorAll(".bright");
 
   function switchTheme(theme) {
-    const themeValue =
-      window.localStorage.getItem("brightness") === "dark"
-        ? theme.dark
-        : theme.light;
+    let themeValue;
+
+    switch (window.localStorage.getItem("brightness")) {
+      case "dark":
+        themeValue = theme.dark;
+        break;
+      case "light":
+        themeValue = theme.light;
+        break;
+      case "auto":
+        themeValue = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? theme.dark
+          : theme.light;
+        break;
+    }
 
     document.documentElement.style.setProperty(
       "--primary-color",
@@ -50,13 +62,11 @@ import themes from "../styles/themes.json";
       .setAttribute("content", themeValue.background);
   }
 
-  // todo: implement brightness based on system preference
-  // window.matchMedia('(prefers-color-scheme: dark)').matches
-
   for (const b of brightness) {
     b.addEventListener("click", (event) => {
       event.preventDefault();
       window.localStorage.setItem("brightness", b.id);
+
       switchTheme(
         themes.find(
           (theme) => theme.name === window.localStorage.getItem("theme")

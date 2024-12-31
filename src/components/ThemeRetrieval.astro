@@ -16,25 +16,48 @@ import themes from "../styles/themes.json";
   }
 
   const themeValue = themeDefinition || findThemeDefinition("default");
-  const theme = window.localStorage.getItem("brightness")
-    ? window.localStorage.getItem("brightness") === "dark"
-      ? themeValue.dark
-      : themeValue.light
-    : window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? themeValue.dark
-      : themeValue.light;
+  let theme;
 
-  document.documentElement.style.setProperty("--primary-color", theme.primary);
-  document.documentElement.style.setProperty(
-    "--secondary-color",
-    theme.secondary
-  );
-  document.documentElement.style.setProperty(
-    "--background-color",
-    theme.background
-  );
-  document.documentElement.style.setProperty(
-    "--tertiary-color",
-    theme.tertiary
-  );
+  switch (window.localStorage.getItem("brightness")) {
+    case "dark":
+      theme = themeValue.dark;
+      break;
+    case "light":
+      theme = themeValue.light;
+      break;
+    case "auto":
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? themeValue.dark
+        : themeValue.light;
+      break;
+  }
+
+  switchTheme(theme);
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      const tv = e.matches ? themeValue.dark : themeValue.light;
+
+      switchTheme(tv);
+    });
+
+  function switchTheme(theme) {
+    document.documentElement.style.setProperty(
+      "--primary-color",
+      theme.primary
+    );
+    document.documentElement.style.setProperty(
+      "--secondary-color",
+      theme.secondary
+    );
+    document.documentElement.style.setProperty(
+      "--background-color",
+      theme.background
+    );
+    document.documentElement.style.setProperty(
+      "--tertiary-color",
+      theme.tertiary
+    );
+  }
 </script>

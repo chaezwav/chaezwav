@@ -11,7 +11,7 @@ import themes from "../styles/themes.json";
   const themeDefinition = findThemeDefinition(item);
 
   if (item && !themeDefinition) {
-    window.localStorage.setItem("theme", "default");
+    window.localStorage.setItem("theme", "d");
     console.log("issue: style: theme not found, set to default");
   }
 

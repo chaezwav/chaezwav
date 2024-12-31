@@ -161,8 +161,7 @@ footer {
 
 .themes {
   display: flex;
-  gap: 1em;
-  justify-content: center;
+  justify-content: space-evenly;
   margin: 0.5em 0;
 }
 

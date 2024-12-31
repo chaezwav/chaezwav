@@ -52,6 +52,7 @@ blockquote {
 h1 {
   font-size: 4rem;
   margin: 0;
+  font-family: var(--font-bold);
 }
 
 h2 {
@@ -157,6 +158,7 @@ footer {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
+  padding: 10px;
 }
 
 .themes {

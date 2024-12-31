@@ -1,9 +1,14 @@
 @import url("./fonts.css");
 
+:root {
+  --font: "CommitMono", monospace;
+}
+
 html,
 button {
   font-size: 16px;
-  font-family: "Atkinson-Hyperlegible", "Open Sans", sans-serif;
+  /* font-family: "Atkinson-Hyperlegible", "Open Sans", sans-serif; */
+  font-family: var(--font);
 }
 
 body {
@@ -18,8 +23,15 @@ body {
 }
 
 strong {
-  font-family: "Atkinson-Hyperlegible Bold", "Open Sans", sans-serif;
+  /* font-family: "Atkinson-Hyperlegible Bold", "Open Sans", sans-serif; */
+  font-family: var(--font);
   color: var(--primary-color);
+}
+
+a:hover {
+  font-family: "CommitMono Bold", monospace;
+  color: var(--tertiary-color) !important;
+  text-decoration: underline;
 }
 
 blockquote {
@@ -40,33 +52,32 @@ blockquote {
 }
 
 .date {
-  font-family: "Noto Sans Mono", monospace;
+  font-family: "CommitMono", monospace;
 }
 
 h1 {
-  font-size: 9rem;
+  font-size: 5rem;
   margin: 0;
 }
 
 h2 {
   font-size: 2rem;
-  font-family: "Excon Bold", "Open Sans", sans-serif !important;
+  /* font-family: "Excon Bold", "Open Sans", sans-serif !important; */
 }
 
 h1,
 h2,
 h3 {
   color: var(--primary-color) !important;
-  font-family: "Excon Black", "Outfit", sans-serif;
+  /* font-family: "Excon Black", "Outfit", sans-serif; */
 }
 
 .latest,
 .latest a {
-  font-size: 1.5rem;
-  font-family: "Excon Bold", "Open Sans", sans-serif;
-  font-weight: bold;
+  /* font-size: 1.5rem; */
+  font-family: "CommitMono Bold", monospace;
   background-color: var(--primary-color) !important;
-  color: var(--background-color) !important;
+  color: var(--background-color);
 }
 
 .latest {
@@ -85,10 +96,7 @@ a {
 .navbar a:not(.dropdown) {
   color: var(--secondary-color);
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+  font-family: var(--font);
 }
 
 footer {
@@ -97,6 +105,8 @@ footer {
   bottom: 0;
   width: 100%;
   margin: 2em 0 1em 0;
+  font-size: 1.5rem;
+  /* font-family: "CommitMono", monospace; */
 }
 
 #name {
@@ -107,12 +117,12 @@ footer {
   /*font-size: 1rem;*/
   color: var(--primary-color);
   line-height: 0.5rem;
-  font-family: "Noto Sans Mono", monospace;
+  /* font-family: "CommitMono", monospace; */
 }
 
 .ptitle {
   font-size: 4rem !important;
-  font-family: "Excon Bold", "Open Sans", sans-serif;
+  /* font-family: "Excon Bold", "Open Sans", sans-serif; */
 }
 
 @keyframes spin {

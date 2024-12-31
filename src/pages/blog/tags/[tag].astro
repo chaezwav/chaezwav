@@ -28,7 +28,11 @@ const { filteredPosts } = Astro.props;
 ---
 
 <Default title={"#" + tag}>
-  <h2>POSTS TAGGED WITH {tag}</h2>
+  <h2 style="color: var(--secondary-color) !important;">
+    posts tagged with <span style="color: var(--primary-color) !important;"
+      >#{tag}</span
+    >
+  </h2>
   {
     filteredPosts.map((post) => (
       <BlogPost

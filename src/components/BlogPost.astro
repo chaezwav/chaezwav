@@ -2,9 +2,7 @@
 const { url, title, date, latest } = Astro.props;
 ---
 
-<p
-  style="font-family:'Excon Bold', 'Open Sans', sans-serif;"
-  class={latest === "latest" ? "latest" : ""}
->
+<!-- style="font-family:'Excon Bold', 'Open Sans', sans-serif;" -->
+<p class={latest === "latest" ? "latest" : ""}>
   {date} - <a href={url}>{title}</a>
 </p>

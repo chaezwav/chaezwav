@@ -29,18 +29,18 @@ import themes from "../styles/themes.json";
       theme = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? themeValue.dark
         : themeValue.light;
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (e) => {
+          theme = e.matches ? themeValue.dark : themeValue.light;
+          switchTheme(theme);
+        });
+
       break;
   }
 
   switchTheme(theme);
-
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) => {
-      const tv = e.matches ? themeValue.dark : themeValue.light;
-
-      switchTheme(tv);
-    });
 
   function switchTheme(theme) {
     document.documentElement.style.setProperty(

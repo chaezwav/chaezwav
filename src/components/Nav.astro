@@ -6,8 +6,6 @@ const NavItems = [
 ];
 
 const { items } = Astro.props;
-
-import ThemeSelector from "./ThemeSelector.astro";
 import Link from "./Link.astro";
 ---
 
@@ -18,6 +16,5 @@ import Link from "./Link.astro";
         ? items.map((item) => <Link href={item.href} text={item.text} />)
         : NavItems.map((item) => <Link href={item.href} text={item.text} />)
     }
-    <!-- <ThemeSelector /> -->
   </span>
 </header>

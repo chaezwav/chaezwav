@@ -28,10 +28,12 @@ import themes from "../styles/themes.json";
       );
 
       theme = e.matches ? newTheme.dark : newTheme.light;
-      switchTheme(theme);
+      switchTheme(theme, newTheme);
+
+      console.log("style: polarity switched to:", e.matches ? "dark" : "light");
     });
 
-  function switchTheme(theme) {
+  function switchTheme(theme, themeBase) {
     document.documentElement.style.setProperty(
       "--primary-color",
       theme.primary
@@ -52,7 +54,17 @@ import themes from "../styles/themes.json";
     document
       .querySelector("meta[name=theme-color]")
       .setAttribute("content", theme.background);
+
+    document.querySelectorAll(".theme").forEach((link) => {
+      if (link.id !== themeBase.name) {
+        link.classList.remove("active");
+        link.textContent = `○ ${link.id}`;
+      } else {
+        link.classList.add("active");
+        link.textContent = `● ${link.id}`;
+      }
+    });
   }
 
-  switchTheme(theme);
+  switchTheme(theme, themeValue);
 </script>

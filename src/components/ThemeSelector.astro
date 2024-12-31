@@ -3,6 +3,7 @@ import themes from "../styles/themes.json";
 ---
 
 <div class="themes">
+  <a></a>
   {
     themes.map((theme) => (
       <a href="#" class="theme" id={theme.name}>
@@ -10,6 +11,7 @@ import themes from "../styles/themes.json";
       </a>
     ))
   }
+  <a></a>
 </div>
 
 <script define:vars={{ themes }}>
@@ -50,12 +52,20 @@ import themes from "../styles/themes.json";
 
   for (const link of links) {
     const themeValue = themes.find((theme) => theme.name === link.id);
-
-    console.log(themeValue);
-
     link.addEventListener("click", (event) => {
       event.preventDefault();
       window.localStorage.setItem("theme", themeValue.name);
+
+      link.classList.toggle("active");
+
+      links.forEach((l) => {
+        if (l !== link) {
+          l.classList.remove("active");
+          l.textContent = `○ ${findThemeDefinition(l.id).name}`;
+        } else {
+          l.textContent = `● ${findThemeDefinition(l.id).name}`;
+        }
+      });
 
       const theme = findThemeDefinition(themeValue.name);
 

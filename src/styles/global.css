@@ -73,21 +73,18 @@ h3 {
   color: var(--background-color);
 }
 
+.latest a {
+  padding: 0 0.5rem;
+}
+
+.latest a:hover {
+  background-color: var(--background-color) !important;
+  color: var(--primary-color) !important;
+}
+
 .latest {
   border-radius: 8px;
   padding: 0.5rem;
-}
-
-a {
-  font-weight: bold;
-  text-decoration: none;
-  color: var(--primary-color);
-}
-
-a:hover {
-  font-family: var(--font-bold);
-  color: var(--tertiary-color) !important;
-  text-decoration: underline;
 }
 
 .navbar {
@@ -106,7 +103,8 @@ a:hover {
   padding: 0.2rem;
 }
 
-.navbar a:hover {
+.navbar a:hover,
+.navbar strong:hover {
   color: var(--background-color) !important;
   background-color: var(--primary-color);
   strong {
@@ -168,14 +166,14 @@ footer {
   margin: 0.5em 0;
 }
 
-.themes a {
+a {
   color: var(--primary-color);
   text-decoration: none;
   font-family: var(--font);
   padding: 0.2rem;
 }
 
-.themes a:hover {
+a:hover {
   color: var(--background-color) !important;
   background-color: var(--primary-color);
 }

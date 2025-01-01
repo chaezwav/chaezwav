@@ -1,6 +1,6 @@
 [
     {
-        "name": "d",
+        "id": "default",
         "light": {
             "primary": "#d39fa3",
             "secondary": "#202124",
@@ -15,7 +15,7 @@
         }
     },
     {
-        "name": "s",
+        "id": "seasonal",
         "light": {
             "primary": "#84C0C2",
             "secondary": "#253237",

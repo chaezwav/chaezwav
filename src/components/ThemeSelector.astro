@@ -1,13 +1,15 @@
 ---
-import themes from "../styles/themes.json";
+import { getCollection } from "astro:content";
+
+const themes = await getCollection("theme");
 ---
 
 <div class="themes">
   <a></a>
   {
     themes.map((theme) => (
-      <a href="#" class="theme" id={theme.name}>
-        {theme.name}
+      <a href="#" class="theme" id={theme.id}>
+        {theme.id.slice(0, 1)}
       </a>
     ))
   }
@@ -18,7 +20,7 @@ import themes from "../styles/themes.json";
   const links = document.querySelectorAll(".theme");
 
   function findThemeDefinition(item) {
-    return themes.find((t) => t.name === item);
+    return themes.find((t) => t.id === item).data;
   }
 
   function switchTheme(theme) {
@@ -47,27 +49,27 @@ import themes from "../styles/themes.json";
       .querySelector("meta[name=theme-color]")
       .setAttribute("content", themeValue.background);
 
-    console.log("style: theme switched to: ", theme.name);
+    console.log("style: theme switched to: ", theme.id);
   }
 
   for (const link of links) {
-    const themeValue = themes.find((theme) => theme.name === link.id);
+    const themeValue = themes.find((theme) => theme.id === link.id);
     link.addEventListener("click", (event) => {
       event.preventDefault();
-      window.localStorage.setItem("theme", themeValue.name);
+      window.localStorage.setItem("theme", themeValue.id);
 
       link.classList.toggle("active");
 
       links.forEach((l) => {
         if (l !== link) {
           l.classList.remove("active");
-          l.textContent = `○ ${findThemeDefinition(l.id).name}`;
+          l.textContent = `○ ${findThemeDefinition(l.id).id.slice(0, 1)}`;
         } else {
-          l.textContent = `● ${findThemeDefinition(l.id).name}`;
+          l.textContent = `● ${findThemeDefinition(l.id).id.slice(0, 1)}`;
         }
       });
 
-      const theme = findThemeDefinition(themeValue.name);
+      const theme = findThemeDefinition(themeValue.id);
 
       switchTheme(theme);
     });

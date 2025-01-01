@@ -2,50 +2,67 @@
 import Default from "../../layouts/default.astro";
 import BlogPost from "../../components/BlogPost.astro";
 import Tag from "../../components/Tag.astro";
-const matches = import.meta.glob("./posts/*.md", { eager: true });
-const postGlob = Object.values(matches);
+import { render, getEntry, getCollection } from "astro:content";
 
-const allPosts = postGlob.sort(
+const blogCollection = await getCollection("blog");
+
+const sortedPosts = blogCollection.sort(
   (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
+    new Date(b.data.publishDate).valueOf() -
+    new Date(a.data.publishDate).valueOf()
 );
 
-const featuredPost = allPosts[0];
+const featuredPost = sortedPosts[0];
+const featuredPostIndex = sortedPosts.reverse().indexOf(featuredPost) + 1;
 
 const uniqueTags = [
-  ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+  ...new Set(sortedPosts.map((post) => post.data.tags).flat()),
 ];
+
+const entry = await getEntry("blog", featuredPost.id);
+const { Content } = await render(entry);
 ---
 
 <Default title="Koehn's Notes">
-  <h3>ABOUT</h3>
-  <p>
-    Welcome to my blog! This is a place where I will share whatever I want, and
-    when I want! I hope you enjoy!
-  </p>
-  <h3>LATEST POST</h3>
-  <BlogPost
-    url={featuredPost.url}
-    title={featuredPost.frontmatter.title}
-    date={new Date(featuredPost.frontmatter.pubDate).toISOString().slice(0, 10)}
-    latest="latest"
-  />
-  <h3>TAGS - ({uniqueTags.length})</h3>
-  <span style="display: flex; flex-wrap: wrap;"
-    >{uniqueTags.map((tag) => <Tag tag={tag} />)}</span
-  >
-  <h3>ALL POSTS - ({allPosts.slice(1).length})</h3>
-  {
-    allPosts
-      .slice(1)
-      .map((post) => (
-        <BlogPost
-          url={post.url}
-          title={post.frontmatter.title}
-          date={new Date(post.frontmatter.pubDate).toISOString().slice(0, 10)}
-        />
-      ))
-  }
-  <p>{allPosts.slice(1).length < 5 ? "∞ That's all the posts for now!" : ""}</p>
+  <div class="blog-page">
+    <div class="main-column">
+      <h3>
+        ∞ {
+          new Date(featuredPost.data.publishDate).toISOString().slice(0, 10)
+        }<br />* N°{featuredPostIndex} -
+        {featuredPost.data.title}
+      </h3>
+      <div class="content"><Content /></div>
+    </div>
+    <div class="container">
+      <h3>* About</h3>
+      <p>
+        Welcome to my blog! This is a place where I will share whatever I want,
+        and when I want! I hope you enjoy!
+      </p>
+      <h3>* Tags - ({uniqueTags.length})</h3>
+      <span style="display: flex; flex-wrap: wrap;"
+        >{uniqueTags.map((tag) => <Tag tag={tag} />)}</span
+      >
+      <h3>* All Posts - ({sortedPosts.slice(1).length})</h3>
+      {
+        sortedPosts
+          .slice(1)
+          .map((post) => (
+            <BlogPost
+              url={`/blog/posts/${post.id}`}
+              title={post.data.title}
+              date={new Date(post.data.publishDate).toISOString().slice(0, 10)}
+            />
+          ))
+      }
+      <p>
+        {
+          sortedPosts.slice(1).length < 5
+            ? "∞ That's all the posts for now!"
+            : ""
+        }
+      </p>
+    </div>
+  </div>
 </Default>

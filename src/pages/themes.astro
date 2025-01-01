@@ -1,0 +1,32 @@
+---
+import Default from "../layouts/default.astro";
+
+import { getCollection } from "astro:content";
+const themes = await getCollection("theme");
+---
+
+<Default title="Themetest">
+  <h2>Demo Header</h2>
+  <p>Demo content for testing themes.</p>
+  <blockquote>This is a blockquote.</blockquote>
+  <p style="font-family: 'CommitMono', monospace;">Monospace test</p>
+
+  <h2>Themes</h2>
+  {
+    themes.map((theme) => (
+      <p>
+        {theme.id}:{" "}
+        <>
+          <br />
+          <br />
+        </>
+        dark: {theme.data.dark.primary}, {theme.data.dark.secondary},
+        {theme.data.dark.background}, {theme.data.dark.tertiary}
+        <br />
+        light: {theme.data.light.primary}, {theme.data.light.secondary},
+        {theme.data.light.background},{theme.data.light.tertiary}
+        <br />
+      </p>
+    ))
+  }
+</Default>

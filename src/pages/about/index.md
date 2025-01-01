@@ -3,7 +3,7 @@ layout: ../../layouts/md-page.astro
 title: About Me
 ---
 
-## PROFESSIONAL
+## Professional
 
 Primarily, I am a student at my High School, but outside of that I am a crew member at Dunkin'.
 
@@ -11,7 +11,7 @@ I also volunteer with my local community regarding school and external-organizat
 
 This was a hobby project to learn web development, but in the past I have worked on some small hobby projects in my free time.
 
-## HOBBIES
+## Hobbies
 
 ### Language Learning
 

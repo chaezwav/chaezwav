@@ -1,17 +1,19 @@
 ---
-import themes from "../styles/themes.json";
+import { getCollection } from "astro:content";
+
+const themes = await getCollection("theme");
 ---
 
 <script define:vars={{ themes }}>
   function findThemeDefinition(item) {
-    return themes.find((t) => t.name === item);
+    return themes.find((t) => t.id === item).data;
   }
 
   const item = window.localStorage.getItem("theme");
   const themeDefinition = findThemeDefinition(item);
 
   if (item && !themeDefinition) {
-    window.localStorage.setItem("theme", "d");
+    window.localStorage.setItem("theme", "default");
     console.log("issue: style: theme not found, set to default");
   }
 
@@ -56,12 +58,14 @@ import themes from "../styles/themes.json";
       .setAttribute("content", theme.background);
 
     document.querySelectorAll(".theme").forEach((link) => {
+      const name = findThemeDefinition(link.id).id.slice(0, 1);
+
       if (link.id !== themeBase.name) {
         link.classList.remove("active");
-        link.textContent = `○ ${link.id}`;
+        link.textContent = `○ ${name}`;
       } else {
         link.classList.add("active");
-        link.textContent = `● ${link.id}`;
+        link.textContent = `● ${name}`;
       }
     });
   }

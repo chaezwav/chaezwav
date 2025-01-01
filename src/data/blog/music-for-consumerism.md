@@ -1,11 +1,11 @@
 ---
-layout: ../../../layouts/post.astro
 title: "Music for Consumerism"
-pubDate: 2024-11-03
+publishDate: 2024-11-03
 tags: ["music", "rants"]
+listing: "unlisted"
 ---
 
-Music has changed -- like a lot of things -- since its creation. With growth comes new innovations, and this directly affects branches of innovation. The topic I want to discuss is money and music. Tying together music and profit is often a goal nowadays (well, to some extent it always has been). A lot of current music projects tend to focus on profit over the "arts". Making money over a unique form of expression. This honestly is saddening.
+Music has changed, like a lot of things, since its creation. With growth comes new innovations, and this directly affects branches of innovation. The topic I want to discuss is money and music. Tying together music and profit is often a goal nowadays (well, to some extent it always has been). A lot of current music projects tend to focus on profit over the "arts". Making money over a unique form of expression. This honestly is saddening.
 
 With the rise of Spotify, Apple Music, Amazon Music, and the bajillion other music streaming platforms, it's never about the creative expression anymore. With Taylor Swift's 9 vinyl record variants, or the 5 different versions of SM Entertainment's aespa's latest comeback, music is just for the profit. Now that's not to say that artistic music doesn't exist, but it's definitely rarer. Artists are trying to appeal to such a large audience using TikTok that songs are shorter. Shorter means more streams, and more streams means more profit.
 

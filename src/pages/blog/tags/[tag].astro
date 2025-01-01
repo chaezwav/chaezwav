@@ -1,46 +1,68 @@
 ---
 import Default from "../../../layouts/default.astro";
 import BlogPost from "../../../components/BlogPost.astro";
+import { getCollection } from "astro:content";
+import TagComponent from "../../../components/Tag.astro";
 
 export async function getStaticPaths() {
-  const matches = import.meta.glob("../posts/*.md", { eager: true });
-  const postGlob = Object.values(matches);
+  const posts = await getCollection("blog");
 
-  const uniqueTags = [
-    ...new Set(postGlob.map((post) => post.frontmatter.tags).flat()),
-  ];
+  const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
 
   return uniqueTags.map((tag) => {
-    const filteredPosts = postGlob.filter((post) =>
-      post.frontmatter.tags.includes(tag)
-    );
+    const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
 
     return {
       params: { tag },
       props: {
         filteredPosts,
+        uniqueTags,
       },
     };
   });
 }
 
 const { tag } = Astro.params;
-const { filteredPosts } = Astro.props;
+const { filteredPosts, uniqueTags } = Astro.props;
 ---
 
 <Default title={"#" + tag}>
-  <h2 style="color: var(--secondary-color) !important;">
-    posts tagged with <span style="color: var(--primary-color) !important;"
-      >#{tag}</span
-    >
-  </h2>
-  {
-    filteredPosts.map((post) => (
-      <BlogPost
-        url={post.url}
-        title={post.frontmatter.title}
-        date={new Date(post.frontmatter.pubDate).toISOString().slice(0, 10)}
-      />
-    ))
-  }
+  <div class="blog-page">
+    <div class="main-column tag-page">
+      <h3 style="color: var(--secondary-color) !important;">
+        posts tagged with <span style="color: var(--primary-color) !important;"
+          >#{tag}</span
+        >
+      </h3>
+      {
+        filteredPosts.map((post) => (
+          <BlogPost
+            url={`/blog/posts/${post.id}`}
+            title={post.data.title}
+            date={new Date(post.data.publishDate).toISOString().slice(0, 10)}
+          />
+        ))
+      }
+      <p>
+        {
+          filteredPosts.slice(1).length < 5
+            ? "∞ That's all the posts for now!"
+            : ""
+        }
+      </p>
+    </div>
+    <div class="container">
+      <h3>* About</h3>
+      <p>
+        Welcome to the tag page! Here you can find all the posts that have been
+        tagged with <span style="color: var(--primary-color) !important;"
+          >#{tag}</span
+        >!
+      </p>
+      <h3>* Tags - ({uniqueTags.length})</h3>
+      <span style="display: flex; flex-wrap: wrap;"
+        >{uniqueTags.map((tagdef) => <TagComponent tag={tagdef} />)}</span
+      >
+    </div>
+  </div>
 </Default>

@@ -16,10 +16,6 @@ The code for this website is hosted on [Github](https://github.com/chaezwav/webs
 ## Fonts
 
 The following fonts are utilized and are kept in the `/public/fonts` folder:
-
-<!-- - [Excon](https://www.fontshare.com/?q=Excon) - Headers and links
-- [Atkinson Hyperlegible](https://www.brailleinstitute.org/freefont/) - Body text -->
-
 - [Commit Mono](https://commitmono.com/)
 
 (These will eventually be on a CDN when I implement one)

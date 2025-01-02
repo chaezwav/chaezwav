@@ -6,18 +6,19 @@ const themes = await getCollection("theme");
 
 <script define:vars={{ themes }}>
   function findThemeDefinition(item) {
-    return themes.find((t) => t.id === item).data;
+      return themes.find((t) => t.id === item).data;
   }
 
-  const item = window.localStorage.getItem("theme");
-  const themeDefinition = findThemeDefinition(item);
+  let item = window.localStorage.getItem("theme")
+
+  let themeDefinition = findThemeDefinition(item);
 
   if (item && !themeDefinition) {
     window.localStorage.setItem("theme", "default");
-    console.log("issue: style: theme not found, set to default");
+    console.log("issue: style: theme not found; set to default");
   }
 
-  const themeValue = themeDefinition || findThemeDefinition("default");
+  const themeValue = themeDefinition
   let theme = window.matchMedia("(prefers-color-scheme: dark)").matches
     ? themeValue.dark
     : themeValue.light;
@@ -60,7 +61,7 @@ const themes = await getCollection("theme");
     document.querySelectorAll(".theme").forEach((link) => {
       const name = findThemeDefinition(link.id).id.slice(0, 1);
 
-      if (link.id !== themeBase.name) {
+      if (link.id !== themeBase.id) {
         link.classList.remove("active");
         link.textContent = `○ ${name}`;
       } else {

@@ -11,7 +11,7 @@ const themes = await getCollection("theme");
   function findThemeDefinition() {
     let localTheme = localStorage.getItem("theme");
 
-    if (localTheme && !themes.find((t) => t.id === localTheme)) {
+    if (localTheme && !themes.find((t) => t.id === localTheme) || (!localTheme)) {
       localStorage.setItem("theme", "default");
       localTheme = "default";
       console.log("init: style: theme not found, set to default");
@@ -42,6 +42,6 @@ const themes = await getCollection("theme");
   <meta name="og:title" content="Koehn's Website" />
   <meta
     name="og:description"
-    content="My personal website featuring my blog and other pages"
+    content="My personals website featuring my blog and other pages"
   />
 </head>

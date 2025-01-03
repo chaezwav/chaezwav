@@ -1,8 +1,8 @@
 ---
-const { url, title, date, latest } = Astro.props;
+const {url, title, date, latest} = Astro.props;
 ---
 
 <!-- style="font-family:'Excon Bold', 'Open Sans', sans-serif;" -->
-<p class={latest === "latest" ? "latest" : ""}>
-  {date} - <a href={url}>{title}</a>
+<p>
+    {date} <a href={url}>{title}</a>
 </p>

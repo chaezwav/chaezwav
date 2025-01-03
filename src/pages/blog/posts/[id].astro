@@ -1,44 +1,73 @@
 <!--TODO implement protected entries?-->
-
 ---
 import Tag from "../../../components/Tag.astro";
-import {getCollection, render} from "astro:content";
+import {getCollection, render, getEntry} from "astro:content";
 import Default from "../../../layouts/default.astro";
+import BlogPost from "../../../components/BlogPost.astro";
+
+const posts = await getCollection("blog");
+const filteredPosts = posts.filter(post => post.data.listing === "published" || post.data.listing === "unlisted");
+
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+    const posts = await getCollection("blog");
+    const filteredPosts = posts.filter(post => post.data.listing === "published" || post.data.listing === "unlisted");
 
-  const filteredPosts = posts.filter(post => post.data.listing === "published" || post.data.listing === "unlisted");
-
-  return filteredPosts.map((post) => ({
-    params: {id: post.id},
-    props: {post},
-  }));
+    return filteredPosts.map((post) => ({
+        props: {post},
+        params: {id: post.id},
+    }));
 }
 
 const {post} = Astro.props;
 const {Content} = await render(post);
+
+
+let relatedPosts = []
+
+post.data.relatedPosts.map((post) => {
+    relatedPosts.push(posts.find((p) => p.id === post.id))
+})
 ---
 
 <Default title={post.data.title}>
-  <article>
-    <div class="blog-page">
-      <div class="main-column">
-        <Content/>
-      </div>
+    <article>
+        <div class="blog-page">
+            <div class="main-column">
+                <Content/>
+            </div>
 
-      <div class="container">
-        <h3>* Metadata</h3>
-        <div class="metadata">
-          {post.data.listing === "unlisted" ? <p>◆ unlisted</p> : null}
-          <p>∞ {new Date(post.data.publishDate).toISOString().slice(0, 10)}</p>
-          <p>© Koehn Humphries</p>
-          <span>
+            <div class="container">
+                <h3>* Metadata</h3>
+                <div class="metadata">
+                    {post.data.listing === "unlisted" ? <p>◆ unlisted</p> : null}
+                    <p>∞ {new Date(post.data.publishDate).toISOString().slice(0, 10)}</p>
+                    <p>© Koehn Humphries</p>
+                    <span>
             # {post.data.tags.map((tag) =>
-              <Tag tag={tag}/>)}
+                            <Tag tag={tag}/>)}
           </span>
+                </div>
+                <h3>* Related Posts</h3>
+                {
+                    relatedPosts.map((post) => {
+                        return (
+                                <BlogPost url={`/blog/posts/${post.id}`} title={post.data.title}
+                                          date={new Date(post.data.publishDate).toISOString().slice(0, 10)}/>)
+                    })
+                }
+                <h3>* Other Posts</h3>
+                {
+                    filteredPosts.filter((p) => p.id !== post.id)
+                        .map((post) => (
+                                <BlogPost
+                                        url={`/blog/posts/${post.id}`}
+                                        title={post.data.title}
+                                        date={new Date(post.data.publishDate).toISOString().slice(0, 10)}
+                                />
+                        ))
+                }
+            </div>
         </div>
-      </div>
-    </div>
-  </article>
+    </article>
 </Default>

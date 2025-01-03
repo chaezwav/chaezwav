@@ -1,16 +1,14 @@
 // 1. Import utilities from `astro:content`
-import { defineCollection, z } from "astro:content";
-
-// 2. Import loader(s)
+import { defineCollection, reference, z } from "astro:content"; // 2. Import loader(s)
 import { file, glob } from "astro/loaders";
 
-// 3. Define your collection(s)
 const blog = defineCollection({
   loader: glob({ pattern: "*.md", base: "src/data/blog/" }),
   schema: z.object({
     title: z.string(),
     tags: z.array(z.string()),
     publishDate: z.coerce.date(),
+    relatedPosts: z.array(reference("blog")),
     listing: z.enum(["unlisted", "published", "draft"]),
   }),
 });

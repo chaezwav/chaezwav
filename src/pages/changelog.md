@@ -9,8 +9,10 @@ title: Changelog
 
 - Implemented unlisted listings
 - Updated the banner css
+- Updated post view
 
 ### 2025-1-2:
+
 - Fixed margins on [tag] page
 - Added new theme and adjusted existing themes
 - Fixed theming completely (No more broken theme parsing 🥳)

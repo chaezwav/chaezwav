@@ -210,6 +210,8 @@ a:hover {
   flex: 0 0 70%;
 }
 
-.blog-page:has(.tag-page) {
-  margin: 0 !important;
+.blog-page:has(.main-column.tag-page) {
+  .main-column {
+    margin: 0 -30% 0 24% !important;
+  }
 }

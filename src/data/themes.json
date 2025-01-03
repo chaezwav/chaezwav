@@ -2,31 +2,46 @@
     {
         "id": "default",
         "light": {
-            "primary": "#d39fa3",
+            "primary": "#c490b2",
             "secondary": "#202124",
             "tertiary": "#535357",
-            "background": "#fff1e6"
+            "background": "#FFF5ED"
         },
         "dark": {
-            "primary": "#f7cacd",
-            "secondary": "#fff1e6",
-            "tertiary": "#535357",
+            "primary": "#ffdff7",
+            "secondary": "#FFF5ED",
+            "tertiary": "#be95c4",
             "background": "#202124"
+        }
+    },
+    {
+        "id": "nightfall",
+        "light": {
+            "primary": "#3b3355",
+            "secondary": "#5d5d81",
+            "tertiary": "#bfcde0",
+            "background": "#fefcfd"
+        },
+        "dark": {
+            "primary": "#fefcfd",
+            "secondary": "#bfcde0",
+            "tertiary": "#5d5d81",
+            "background": "#120d1b"
         }
     },
     {
         "id": "seasonal",
         "light": {
-            "primary": "#84C0C2",
+            "primary": "#1d3557",
             "secondary": "#253237",
-            "tertiary": "#1d3557",
-            "background": "#E0FBFC"
+            "tertiary": "#779fa1",
+            "background": "#eefcfa"
         },
         "dark": {
-            "primary": "#a8dadc",
-            "secondary": "#E0FBFC",
+            "primary": "#eefcfa",
+            "secondary": "#a8dadc",
             "tertiary": "#457b9d",
-            "background": "#253237"
+            "background": "#131d32"
         }
     }
 ]

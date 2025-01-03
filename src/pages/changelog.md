@@ -5,4 +5,5 @@ title: Changelog
 
 ## [v0-alpha](/version)
 
-This is the running version as of now (no major changes)
+### 2025-1-2: 
+- Fixed theming completely (No more broken theme parsing 🥳)

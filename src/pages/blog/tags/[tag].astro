@@ -5,17 +5,19 @@ import { getCollection } from "astro:content";
 import TagComponent from "../../../components/Tag.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("blog")
 
-  const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
+  const filteredPosts = posts.filter((post) => post.data.listing === "published")
+
+  const uniqueTags = [...new Set(filteredPosts.map((post) => post.data.tags).flat())];
 
   return uniqueTags.map((tag) => {
-    const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
+    const finishedFilter = filteredPosts.filter((post) => post.data.tags.includes(tag));
 
     return {
       params: { tag },
       props: {
-        filteredPosts,
+        finishedFilter,
         uniqueTags,
       },
     };
@@ -23,19 +25,17 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params;
-const { filteredPosts, uniqueTags } = Astro.props;
+const {finishedFilter, uniqueTags} = Astro.props;
 ---
 
 <Default title={"#" + tag}>
   <div class="blog-page">
     <div class="main-column tag-page">
-      <h3 style="color: var(--secondary-color) !important;">
-        posts tagged with <span style="color: var(--primary-color) !important;"
-          >#{tag}</span
-        >
+      <h3>
+        * Posts Tagged
       </h3>
       {
-        filteredPosts.map((post) => (
+        finishedFilter.map((post) => (
           <BlogPost
             url={`/blog/posts/${post.id}`}
             title={post.data.title}
@@ -45,7 +45,7 @@ const { filteredPosts, uniqueTags } = Astro.props;
       }
       <p>
         {
-          filteredPosts.slice(1).length < 5
+          finishedFilter.slice(1).length < 5
             ? "∞ That's all the posts for now!"
             : ""
         }

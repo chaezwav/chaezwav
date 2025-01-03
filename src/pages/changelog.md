@@ -7,6 +7,7 @@ title: Changelog
 
 ### 2025-1-3:
 
+- Implemented unlisted listings
 - Updated the banner css
 
 ### 2025-1-2:

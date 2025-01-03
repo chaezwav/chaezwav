@@ -4,9 +4,11 @@ import BlogPost from "../../components/BlogPost.astro";
 import Tag from "../../components/Tag.astro";
 import { render, getEntry, getCollection } from "astro:content";
 
-const blogCollection = await getCollection("blog");
+const blogCollection = await getCollection("blog")
 
-const sortedPosts = blogCollection.sort(
+
+
+const sortedPosts = blogCollection.filter((post) => post.data.listing === "published").sort(
   (a, b) =>
     new Date(b.data.publishDate).valueOf() -
     new Date(a.data.publishDate).valueOf()

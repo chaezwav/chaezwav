@@ -2,7 +2,7 @@
 import { defineCollection, z } from "astro:content";
 
 // 2. Import loader(s)
-import { glob, file } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 
 // 3. Define your collection(s)
 const blog = defineCollection({
@@ -11,7 +11,7 @@ const blog = defineCollection({
     title: z.string(),
     tags: z.array(z.string()),
     publishDate: z.coerce.date(),
-    language: z.enum(["unlisted", "public", "draft"]).optional(),
+    listing: z.enum(["unlisted", "published", "draft"]),
   }),
 });
 

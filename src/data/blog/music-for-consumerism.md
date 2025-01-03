@@ -2,7 +2,7 @@
 title: "Music for Consumerism"
 publishDate: 2024-11-03
 tags: ["music", "rants"]
-listing: "unlisted"
+listing: "published"
 ---
 
 Music has changed, like a lot of things, since its creation. With growth comes new innovations, and this directly affects branches of innovation. The topic I want to discuss is money and music. Tying together music and profit is often a goal nowadays (well, to some extent it always has been). A lot of current music projects tend to focus on profit over the "arts". Making money over a unique form of expression. This honestly is saddening.
